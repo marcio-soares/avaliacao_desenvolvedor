@@ -1,0 +1,16 @@
+.form-signin
+  .text-center.mb-4
+    %h1.h3.mb-3.font-weight-normal Gestão de vendas
+    %p
+      suas vendas com um relatório mais detalhado.
+  = form_tag upload_home_index_path, multipart: true, class: 'form-horizontal' do
+    = render 'shared/error_messages'
+    .input-group.mb-3
+      .custom-file
+        = file_field_tag 'upload_file', class: 'custom-file-input', lang: 'pt-br'
+        %label.custom-file-label Selecionar Arquivo
+    %button.btn.btn-lg.btn-success.btn-block.mb-3.btn-upload{:type => "submit", disabled: true} Enviar Arquivo
+    = link_to 'Visualizar pedidos', orders_path, class: 'btn btn-primary btn-lg btn-block'
+    %p.mt-5.mb-3.text-muted.text-center © #{Time.now.year}
+
+

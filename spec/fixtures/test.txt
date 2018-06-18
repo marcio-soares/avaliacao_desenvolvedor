@@ -1,0 +1,204 @@
+Stack Overflow
+
+Search…
+ 
+Log In Sign Up
+This site uses cookies to deliver our services and to show you relevant ads and job listings. By using our site, you acknowledge that you have read and understand our Cookie Policy, Privacy Policy, and our Terms of Service. Your use of Stack Overflow’s Products and Services, including the Stack Overflow Network, is subject to these policies and terms.
+
+
+Join Stack Overflow to learn, share knowledge, and build your career.
+
+Email Sign Up
+OR SIGN IN WITH
+ Google
+ Facebook
+Home
+PUBLIC
+Stack Overflow
+Tags
+Users
+Jobs
+TEAMS
+Create Team
+
+Does Ruby provide a way to do File.read() with specified encoding?
+Ask Question
+up vote
+25
+down vote
+favorite
+3
+In ruby 1.9.x, we can specify the encoding with File.open('filename','r:iso-8859-1'). I often prefer to use a one-line File.read() if I am reading many short files into strings directly. Is there a way I can specify the encoding directly, or do I have to resort to one of the following?
+
+str = File.read('filename')
+str.force_encoding('iso-8859-1')
+or
+
+f = File.open('filename', 'r:iso-8859-1')
+s = ''
+while (line = f.gets)
+    s += line
+end
+f.close
+ruby file encoding
+shareimprove this question
+edited Nov 13 '13 at 20:42
+
+mu is too short
+335k53666647
+asked Jul 26 '12 at 7:27
+
+Chthonic Project
+5,61512673
+add a comment
+1 Answer
+active oldest votes
+Não encontrou uma resposta? Pergunte em Stack Overflow em Português.
+
+✕
+up vote
+43
+down vote
+accepted
+From the fine manual:
+
+read(name, [length [, offset]], open_args) → string
+
+Opens the file, optionally seeks to the given offset, then returns length bytes (defaulting to the rest of the file). read ensures the file is closed before returning.
+
+If the last argument is a hash, it specifies option for internal open().
+
+So you can say things like this:
+
+>> s = File.read('pancakes', :encoding => 'iso-8859-1')
+>> s.encoding
+=> #<Encoding:ISO-8859-1>
+shareimprove this answer
+edited Mar 16 '13 at 23:48
+answered Jul 26 '12 at 7:39
+
+mu is too short
+335k53666647
+add a comment
+Your Answer
+
+ 
+Sign up or log in
+ Sign up using Google
+ Sign up using Facebook
+ Sign up using Email and Password
+ 
+Post as a guest
+Name
+
+Email
+
+required, but never shown
+ Post Your Answer
+By clicking "Post Your Answer", you acknowledge that you have read our updated terms of service, privacy policy and cookie policy, and that your continued use of the website is subject to these policies.
+Not the answer you're looking for? Browse other questions tagged ruby file encoding or ask your own question.
+asked
+
+5 years, 10 months ago
+
+viewed
+
+18,582 times
+
+active
+
+4 years, 7 months ago
+
+Want a rails job?
+Senior Ruby on Rails Developer - Work From Home!
+ReinteractiveNo office location
+REMOTE
+ruby-on-railsruby
+Senior Frontend Developer/Engineer - JS, CSS, Angular, React
+MovileCampinas, Brazil
+RELOCATION
+ruby-on-railsjavascript
+Chief Software Architect (Ruby on Rails)
+CrossoverNo office location
+$100K - $100KREMOTE
+ruby-on-railsruby
+Ruby on Rails Software Developer
+Sevatec, Inc.No office location
+REMOTE
+ruby-on-railsjavascript
+Linked
+2
+File.readlines invalid byte sequence in UTF-8 (ArgumentError)
+Related
+264
+What does Ruby have that Python doesn't, and vice versa?
+6
+Ruby string encoding problem
+224
+What is simplest way to read a file into String?
+1
+display iso-8859-1 encoded data gives strange characters
+4
+Incompatible encodings with ruby and Nokogiri HTML
+46
+Ruby read CSV file as UTF-8 and/or convert ASCII-8Bit encoding to UTF-8
+3
+Ruby and encoding conversion
+1
+What does ISO-8859 in `file` mean?
+2
+Reading contents from UTF-16 encoded file in Ruby
+2
+Why my rails application does not work with encoding ISO8859-1?
+Hot Network Questions
+Debian Installation: What does "Country to base default locale settings on" affect?
+Question about the uses of "を" particle besides being a "direct object" and "spatial object" marker
+Upper or Lower Wythoff?
+What is the word for using one word to replace another for cosmetic reasons?
+Is spin really just "rest angular momentum"?
+Create an activity when a specific profile is submitted?
+When does Windows write registry changes to disk?
+Adding nodes through a TikZ style, using double dash lines ``--``
+Can I see a Hidden creature that is not obscured at all?
+How can I handle my father challenging everything I say?
+What is on/in my lens?
+Why does Gerard say “I don’t care!” to Kimble in the tunnel?
+How to choose a good grading curve for yes/no exams?
+Swim across to the other side of a river
+How to deal with unknown genders in English?
+more hot questions
+ question feed
+STACK OVERFLOW
+Questions
+Jobs
+Developer Jobs Directory
+Salary Calculator
+Help
+Mobile
+Disable Responsiveness
+PRODUCTS
+Teams
+Talent
+Engagement
+Enterprise
+COMPANY
+About
+Press
+Work Here
+Legal
+Privacy Policy
+Contact Us
+STACK EXCHANGE
+NETWORK
+Technology
+Life / Arts
+Culture / Recreation
+Science
+Other
+Blog
+Facebook
+Twitter
+LinkedIn
+site design / logo © 2018 Stack Exchange Inc; user contributions licensed under cc by-sa 3.0 with attribution required. rev 2018.6.15.30772
+
+ 

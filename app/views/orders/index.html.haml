@@ -1,0 +1,38 @@
+.row
+  .col-sm-12
+    %h4 Lista de Pedidos
+    = render 'shared/error_messages'
+    - if @orders.present?
+      %table.table
+        %tbody
+          %tr
+            %th{style: 'width:15%'} Receita Bruta
+            %td= Order.sum
+      %table.table
+        %thead.thead-dark
+          %tr
+            %th{:scope => "col"} #
+            %th{:scope => "col"} Cliente
+            %th{:scope => "col"} Descrição do Produto
+            %th{:scope => "col"} Preço
+            %th{:scope => "col"} Quantidade
+            %th{:scope => "col"} Total
+            %th{:scope => "col"} Fornecedor
+            %th{:scope => "col"} Endereço
+        %tbody
+          - @orders.each do |order|
+            %tr
+              %th{:scope => "row"}= order.id
+              %td= order.customer.name
+              %td= order.product.description
+              %td= order.product.price
+              %td= order.quantity
+              %td= order.total
+              %td= order.product.provider.name
+              %td= order.product.provider.address
+          %tr
+            %td{colspan: 7}
+              = paginate @orders
+    - else
+      %p não há pedidos 
+    = link_to 'Adicionar pedidos', root_path, class: 'btn btn-primary btn-sm'

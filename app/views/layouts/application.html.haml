@@ -1,0 +1,16 @@
+!!!
+%html{lang: 'pt-br'}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title TaxiWeb
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0', :name => "viewport"}/
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track' => 'reload'
+
+  %body{class: "#{controller_name}"}
+    .container
+      = yield
+
+  = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
