@@ -1,0 +1,4 @@
+curl -H "Content-Type: application/json" -X POST -d '{"pharmacist": {"birth_date": "1953-06-18","cpf": {"number": "526.716.730-43"},"crf": {"number": "560405","uf": "SP"},"email": "amalia@oreilly.co","name": "Sr. Karla Lima","password": "%&59zlBR","password_confirmation": "%&59zlBR"}}' http://staging-api.sollisinovacao.com.br/v1/pharmacists
+
+
+
